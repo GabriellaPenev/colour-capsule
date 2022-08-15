@@ -32,7 +32,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: black;
 }
 
 h1 {
@@ -65,6 +64,7 @@ input[type="color"] {
   -webkit-appearance: none;
   box-shadow: .2em .2em .2em rgba(0, 0, 0, .1);
   border: 0;
+  background: none;
   cursor: pointer;
   padding: 0;
   width: 60px;
@@ -72,6 +72,9 @@ input[type="color"] {
   margin: 0 20px;
 }
 
+input[type="text"]:focus{
+  outline: none;
+}
 button {
   font-family: 'Comfortaa', cursive;
   text-transform: uppercase;
@@ -82,12 +85,13 @@ button {
   letter-spacing: 5px;
   margin: 20px 0;
   cursor: pointer;
-  transition: 0.7s ease;
+  transition: 0.5s ease;
 }
 
 button:hover{
   background-color: black;
   color: white;
+  letter-spacing: 8px;
 }
 
 ul {
@@ -110,4 +114,40 @@ li {
   border: 1px solid transparent;
   border-radius: 50%;
 
+}
+
+.title {
+  animation: color-animation 8s linear infinite;
+}
+
+.colorTitle {
+  --color-1: #79cc74;
+  --color-2: #3D8DAE;
+  --color-3: #813aa3;
+  --color-4: #ef950c;
+  --color-5: #c31f9a;
+}
+
+.capsuleTitle {
+  --color-1: #5f67d0;
+  --color-2: #7fc1ba;
+  --color-3: #bd5500;
+  --color-4: #8b95ff;
+  --color-5: #196c72;
+}
+
+
+
+@keyframes color-animation {
+  0%    {color: var(--color-1)}
+  15%   {color: var(--color-1)}
+  25%   {color: var(--color-2)}
+  35%   {color: var(--color-2)}
+  45%   {color: var(--color-3)}
+  55%   {color: var(--color-3)}
+  65%   {color: var(--color-4)}
+  75%   {color: var(--color-4)}
+  85%   {color: var(--color-5)}
+  95%   {color: var(--color-5)}
+  100%  {color: var(--color-1)}
 }

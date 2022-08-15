@@ -63,8 +63,11 @@ function App() {
   return (
     <div className="App wrapper">
       <header className="App-header">
-        <h1>Color Capsule</h1>
-        <p>Create a mood board of custom colors that you can use for your next interior design project, outfit pick, or just represent your mood through color. Select up to five colors and save them to your own color capsule:</p>
+        <h1>
+          <span className='title colorTitle'>Color </span> 
+          <span className='title capsuleTitle'>Capsule</span>
+        </h1>
+        <p>Create a custom collection of colors that you can use for your next interior design project, outfit idea, or to represent your mood in the moment. Select up to five colors and save them to your own color capsule:</p>
 
         <div className="form">
           <form action="submit">
@@ -138,7 +141,9 @@ function App() {
         {color.map((color) => {
           return (
             <li key={color}>
-              <div className="results" style={{ "backgroundColor": color }} ></div>
+              <div 
+                className="results" 
+                style={{ "backgroundColor": color }} ></div>
               <p>{color}</p>
             </li>
           )
