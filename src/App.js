@@ -1,19 +1,25 @@
 import './App.css';
-import { getDatabase, ref, onValue, push } from 'firebase/database';
+import { getDatabase, ref, onValue, push, remove } from 'firebase/database';
 import firebase from './firebase';
 import { useState, useEffect } from 'react';
+import Header from './Header';
+import Form from './Form';
+import Results from './Results';
+import Footer from './Footer';
 
 function App() {
 
   const initialValues = {
-    color1: "#FFFFFF",
-    color2: "#FFFFFF",
-    color3: "#FFFFFF",
-    color4: "#FFFFFF",
-    color5: "#FFFFFF"
+    color1: "#ffffff",
+    color2: "#ffffff",
+    color3: "#ffffff",
+    color4: "#ffffff",
+    color5: "#ffffff"
   };
-
+  // state to bring data stored in firebase to the page: 
   const [color, setColor] = useState([]);
+
+  // state to store user's input data and push them to firebase:
   const [userInput, setUserInput] = useState(initialValues);
 
   const handleInputChange = (e) => {
@@ -25,132 +31,61 @@ function App() {
   };
 
   useEffect(() => {
-    // variable that holds my database details
     const database = getDatabase(firebase)
-    // variable that references my database
     const dbRef = ref(database)
-    // add event listener to that variable that will fire from the database, call the data 'response':
+
     onValue(dbRef, (response) => {
       const dbColors = [];
-      // here we store the response from our query to Firebase inside of a variable called data.
-      // .val() is a Firebase method that gets us the information we want
       const data = response.val();
-      // data is an object, so we iterate through it using a for in loop to access each color's value
-      for (let hexcode in data) {
+      for (let key in data) {
         // inside the loop, we push each color name to the dbColors array:
-        dbColors.push(data[hexcode]);
+        // pushing an object that has the hexcode AND the unique key
+        dbColors.push({name: data[key], key:key});
       }
-      // then call setColor to update the component's state using the local array dbColors
+      // call setColor to update the component's state using the local array dbColors
       setColor(dbColors);
     });
   }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // create a reference to the database:
+
     const database = getDatabase(firebase)
     const dbRef = ref(database)
 
     if (userInput) {
-
       // add data to firebase, pass in where (dbRef) and what is going (userInput):
-      push(dbRef, JSON.stringify( userInput));
+      push(dbRef, userInput);
+
       // clear the inputs after it loads to firebase and page:
-      setUserInput('');
+      setUserInput(initialValues);
     }
   }
 
+    // this function takes an argument, which is the ID of the book we want to remove
+    const handleRemoveCapsule = (capsuleID) => {
+      // here we create a reference to the database 
+      // this time though, instead of pointing at the whole database, we make our dbRef point to the specific node of the capsule we want to remove
+      const database = getDatabase(firebase);
+      const dbRef = ref(database, `/${capsuleID}`);
+      
+      // using the Firebase method remove(), we remove the node specific to the capsule ID
+      remove(dbRef)
+    }
+  
+
   return (
     <div className="App wrapper">
-      <header className="App-header">
-        <h1>
-          <span className='title colorTitle'>Color </span> 
-          <span className='title capsuleTitle'>Capsule</span>
-        </h1>
-        <p>Create a custom collection of colors that you can use for your next interior design project, outfit idea, or to represent your mood in the moment. Select up to five colors and save them to your own color capsule:</p>
-
-        <div className="form">
-          <form action="submit">
-            <div className="options">
-              <div className="option">
-                <label htmlFor="color1">Color 1</label>
-                <input
-                  type="color"
-                  id="color1"
-                  value={userInput.color1}
-                  onChange={handleInputChange}
-                  name="color1"
-                  label="color1"
-                />
-              </div>
-
-              <div className="option">
-                <label htmlFor="color2">Color 2</label>
-                <input
-                  type="color"
-                  id="color2"
-                  value={userInput.color2}
-                  onChange={handleInputChange}
-                  name="color2"
-                  label="color2"
-                />
-              </div>
-              <div className="option">
-                <label htmlFor="color3">Color 3</label>
-                <input
-                  type="color"
-                  id="color3"
-                  value={userInput.color3}
-                  onChange={handleInputChange}
-                  name="color3"
-                  label="color3"
-                />
-              </div>
-              <div className="option">
-                <label htmlFor="color4">Color 4</label>
-                <input
-                  type="color"
-                  id="color4"
-                  value={userInput.color4}
-                  onChange={handleInputChange}
-                  name="color4"
-                  label="color4"
-                />
-              </div>
-              <div className="option">
-                <label htmlFor="color5">Color 5</label>
-                <input
-                  type="color"
-                  id="color5"
-                  value={userInput.color5}
-                  onChange={handleInputChange}
-                  name="color5"
-                  label="color5"
-                />
-              </div>
-            </div>
-            <button
-              type="submit"
-              onClick={handleSubmit}
-            >Create color capsule</button>
-          </form>
-        </div>
-      </header>
-
-      <ul>
-        {color.map((color) => {
-          return (
-            <li key={color}>
-              <div 
-                className="results" 
-                style={{ "backgroundColor": color }} ></div>
-              <p>{color}</p>
-            </li>
-          )
-        })}
-      </ul>
-
-
+      <Header />
+      <main>
+        <Form 
+          userInput={userInput} 
+          handleInputChange={handleInputChange} 
+          handleSubmit={handleSubmit}
+        />
+        <Results color={color} handleRemoveCapsule={handleRemoveCapsule} />
+      </main>
+      <Footer />
     </div>
   );
 }
