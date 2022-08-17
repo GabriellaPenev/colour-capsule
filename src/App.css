@@ -23,7 +23,7 @@ body,
 .wrapper {
   margin: 0 auto;
   max-width: 1260px;
-  width: 80%;
+  width: 75%;
 }
 
 .App {
@@ -145,7 +145,8 @@ button {
   font-size: clamp(0.8rem, 2vw, 1.1rem);
 }
 
-.submitButton:hover {
+.submitButton:hover,
+.submitButton:focus {
   background-color: black;
   color: white;
   letter-spacing: 8px;
@@ -234,6 +235,7 @@ a {
 
   .submitButton {
     width: 100%;
+    letter-spacing: 3px;
   }
 
   .results {
@@ -254,8 +256,9 @@ a {
     font-size: 0.7rem;
   }
   
-  .submitButton:hover {
-    letter-spacing: 6px;
+  .submitButton:hover, 
+  .submitButton:focus {
+    letter-spacing: 4px;
   }
 
   .removeButton {

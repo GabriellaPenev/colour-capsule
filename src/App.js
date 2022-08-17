@@ -60,12 +60,12 @@ function App() {
     }
   }
 
-    // this function takes an argument, which is the ID of the book we want to remove
+    // this function takes an argument, I've passed in capsuleID as the parameter representing the fb capsule key/id:
     const handleRemoveCapsule = (capsuleID) => {
-      // dbRef points to the specific node of the capsule we want to remove
+      // dbRef points to the specific node of the capsule I want to remove
       const database = getDatabase(firebase);
       const dbRef = ref(database, `/${capsuleID}`);
-      // using the Firebase method remove(), we remove the node specific to the capsule ID
+      // using the Firebase method remove(), we remove the node specific to the capsule id
       remove(dbRef)
     }
 
@@ -73,13 +73,19 @@ function App() {
     <div className="App wrapper">
       <Header />
       <main>
+      
         <Form 
           userInput={userInput} 
           handleInputChange={handleInputChange} 
           handleSubmit={handleSubmit}
         />
-        <Results color={color} handleRemoveCapsule={handleRemoveCapsule} />
+        
+        <Results 
+          color={color} 
+          handleRemoveCapsule={handleRemoveCapsule} 
+        />
       </main>
+      
       <Footer />
     </div>
   );
