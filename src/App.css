@@ -36,8 +36,9 @@ body,
 }
 
 h1 {
-  font-size: 4.4rem;
+  font-size: clamp(1.6rem, 8vw, 4.4rem);
   font-weight: 700;
+  margin-top: 40px;
 }
 
 .title, 
@@ -75,8 +76,14 @@ a {
   100%  {color: var(--color-1)}
 }
 
+header p {
+  font-size: clamp(0.8rem, 3vw, 1.1rem);
+  line-height: 1.5rem;
+}
+
 form {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -85,6 +92,8 @@ form {
 
 .options {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin: 20px 0;
 }
 
@@ -108,7 +117,7 @@ input[type="color"] {
   background: none;
   cursor: pointer;
   padding: 0;
-  width: 60px;
+  width: 100px;
   height: 30px;
   margin: 0 20px;
 }
@@ -118,7 +127,7 @@ input[type="text"]:focus{
 }
 
 button {
- font-family: 'Comfortaa', cursive;
+  font-family: 'Comfortaa', cursive;
   background: white;
   border: none;
   padding: 10px;
@@ -133,6 +142,7 @@ button {
   margin: 20px 0;
   box-shadow: .5em .5em .5em rgba(0, 0, 0, .1);
   transition: 0.5s ease;
+  font-size: clamp(0.8rem, 2vw, 1.1rem);
 }
 
 .submitButton:hover {
@@ -144,6 +154,7 @@ button {
 ul {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   border: 1px solid transparent;
   box-shadow: 1em 1em 1em rgba(0, 0, 0, .1);
@@ -196,4 +207,66 @@ footer {
 
 a {
   text-decoration: none;
+}
+
+
+@media (max-width: 800px){
+
+  input[type="color"] {
+    margin: 0 10px;
+  }
+
+  header p {
+    line-height: 1.1rem;
+  }
+
+  .submitButton {
+    margin: 10px 0;
+  }
+}
+
+
+@media (max-width: 550px){
+
+  .options {
+    margin: 0;
+  }
+
+  .submitButton {
+    width: 100%;
+  }
+
+  .results {
+    width: 70px;
+    height: 70px;
+  }
+
+  ul {
+    padding-top: 30px;
+  }
+
+  ul p {
+    margin: 5px 0;
+  }
+
+  li {
+    padding: 5px;
+    font-size: 0.7rem;
+  }
+  
+  .submitButton:hover {
+    letter-spacing: 6px;
+  }
+
+  .removeButton {
+    width: 22px;
+    height: 22px;
+    font-size: 0.9rem;
+  }
+
+  .removeButton:hover, 
+  .removeButton:focus {
+    width: 25px;
+    height: 25px;
+  }
 }

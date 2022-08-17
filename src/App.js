@@ -38,8 +38,7 @@ function App() {
       const dbColors = [];
       const data = response.val();
       for (let key in data) {
-        // inside the loop, we push each color name to the dbColors array:
-        // pushing an object that has the hexcode AND the unique key
+        // inside the loop, we push each color name and colour value to the dbColors array:
         dbColors.push({name: data[key], key:key});
       }
       // call setColor to update the component's state using the local array dbColors
@@ -56,7 +55,6 @@ function App() {
     if (userInput) {
       // add data to firebase, pass in where (dbRef) and what is going (userInput):
       push(dbRef, userInput);
-
       // clear the inputs after it loads to firebase and page:
       setUserInput(initialValues);
     }
@@ -64,15 +62,12 @@ function App() {
 
     // this function takes an argument, which is the ID of the book we want to remove
     const handleRemoveCapsule = (capsuleID) => {
-      // here we create a reference to the database 
-      // this time though, instead of pointing at the whole database, we make our dbRef point to the specific node of the capsule we want to remove
+      // dbRef points to the specific node of the capsule we want to remove
       const database = getDatabase(firebase);
       const dbRef = ref(database, `/${capsuleID}`);
-      
       // using the Firebase method remove(), we remove the node specific to the capsule ID
       remove(dbRef)
     }
-  
 
   return (
     <div className="App wrapper">
