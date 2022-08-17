@@ -192,6 +192,11 @@ ul {
 li {
   padding: 20px;
   font-size: 0.8rem;
+  transition: 0.5s;
+}
+
+li:hover {
+  font-weight: bold;
 }
 
 .results {

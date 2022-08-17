@@ -1,6 +1,6 @@
 const Header = () => {
     return(
-        <header>
+        <header className="animate__animated animate__fadeIn">
             <h1>
                 <span className='title firstColor'>Colour </span>
                 <span className='title secondColor'>Capsule</span>

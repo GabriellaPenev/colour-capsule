@@ -2,7 +2,7 @@
 function Form({ userInput, handleInputChange, handleSubmit }) {
     return(
         <form action="submit">
-            <div className="options">
+            <div className="options animate__animated animate__fadeIn">
                 <div className="option">
                     <label htmlFor="color1">Colour 1</label>
                     <input
@@ -63,7 +63,7 @@ function Form({ userInput, handleInputChange, handleSubmit }) {
                     />
                 </div>
             </div>
-            <button className="submitButton" type="submit" onClick={handleSubmit}>Create colour capsule</button>
+            <button className="submitButton animate__animated animate__fadeIn" type="submit" onClick={handleSubmit}>Create colour capsule</button>
         </form>
     )
 }

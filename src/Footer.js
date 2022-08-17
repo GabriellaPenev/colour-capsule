@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <footer>
+        <footer className="animate__animated animate__fadeIn">
         <p>Created at  
             <span className="secondColor"><a href="https://junocollege.com/" target="_blank" rel="noopener noreferrer"> Juno College </a></span> 
             by 

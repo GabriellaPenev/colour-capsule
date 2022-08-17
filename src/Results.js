@@ -5,7 +5,7 @@ function Results({ color, handleRemoveCapsule }) {
         <>
             {color.map((capsule) => {
                 return (
-                    <ul key={capsule.key}>
+                    <ul key={capsule.key} className="animate__animated animate__fadeIn">
                         <li>
                             <div
                                 className="results"
