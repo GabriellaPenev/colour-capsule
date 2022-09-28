@@ -41,7 +41,9 @@ function Results({ color, handleRemoveCapsule }) {
                             </div>
                             <p>{capsule.name.color5}</p>
                         </li>
-                        <button className="removeButton" onClick={() => {handleRemoveCapsule(capsule.key)}}>x</button>
+
+
+                        <button className="removeButton" onClick={() => { handleRemoveCapsule(capsule.key) }}>x</button>
 
                     </ul>
                 )

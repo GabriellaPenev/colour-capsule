@@ -180,13 +180,12 @@ ul {
   align-items: center;
   font-weight: bold;
   font-size: 1.2rem;
-  transition: all 0.5s ease;
+  transition: all 0.3s;
 }
 
 .removeButton:hover, 
 .removeButton:focus {
-  width: 33px;
-  height: 33px;
+  transform: scale(1.1);
 }
 
 li {
