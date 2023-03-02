@@ -1,51 +1,64 @@
 
-function Results({ color, handleRemoveCapsule }) {
+function Results({ colors, handleRemoveCapsule }) {
 
     return (
         <>
-            {color.map((capsule) => {
+            {colors.map((color) => {
                 return (
-                    <ul key={capsule.key} className="animate__animated animate__fadeIn">
-                        <li>
-                            <div
-                                className="results"
-                                style={{ "backgroundColor": capsule.name.color1 }}>
-                            </div>
-                            <p>{capsule.name.color1}</p>
-                        </li>
-                        <li>
-                            <div
-                                className="results"
-                                style={{ "backgroundColor": capsule.name.color2 }}>
-                            </div>
-                            <p>{capsule.name.color2}</p>
-                        </li>
-                        <li>
-                            <div
-                                className="results"
-                                style={{ "backgroundColor": capsule.name.color3 }}>
-                            </div>
-                            <p>{capsule.name.color3}</p>
-                        </li>
-                        <li>
-                            <div
-                                className="results"
-                                style={{ "backgroundColor": capsule.name.color4 }}>
-                            </div>
-                            <p>{capsule.name.color4}</p>
-                        </li>
-                        <li>
-                            <div
-                                className="results"
-                                style={{ "backgroundColor": capsule.name.color5 }}>
-                            </div>
-                            <p>{capsule.name.color5}</p>
-                        </li>
+                    <div className="resultsContainer animate__animated animate__fadeIn">
+                        <p>{color.name.title}</p>
+                        <ul key={color.key}>
+                            <li>
+                                <div
+                                    className="results"
+                                    style={
+                                        color.name.color1 === '#ffffff' ? { "backgroundColor": color.name.color1, "border": '1px solid lightgray' } : { "backgroundColor": color.name.color1 }
+                                    }>
+                                </div>
+                                <p>{color.name.color1}</p>
+                            </li>
+                            <li>
+                                <div
+                                    className="results"
+                                    style={
+                                        color.name.color2 === '#ffffff' ? { "backgroundColor": color.name.color2, "border": '1px solid lightgray' } : { "backgroundColor": color.name.color2 }
+                                    }>
+                                </div>
+                                <p>{color.name.color2}</p>
+                            </li>
+                            <li>
+                                <div
+                                    className="results"
+                                    style={
+                                        color.name.color3 === '#ffffff' ? { "backgroundColor": color.name.color3, "border": '1px solid lightgray' } : { "backgroundColor": color.name.color3 }
+                                    }>
+                                </div>
+                                <p>{color.name.color3}</p>
+                            </li>
+                            <li>
+                                <div
+                                    className="results"
+                                    style={
+                                        color.name.color4 === '#ffffff' ? { "backgroundColor": color.name.color4, "border": '1px solid lightgray' } : { "backgroundColor": color.name.color4 }
+                                    }>
+                                </div>
+                                <p>{color.name.color4}</p>
+                            </li>
+                            <li>
+                                <div
+                                    className="results"
+                                    style={
+                                        color.name.color5 === '#ffffff' ? { "backgroundColor": color.name.color5, "border": '1px solid lightgray' } : { "backgroundColor": color.name.color5 }
+                                    }>
+                                </div>
+                                <p>{color.name.color5}</p>
+                            </li>
 
 
-                        <button className="removeButton" onClick={() => { handleRemoveCapsule(capsule.key) }}>x</button>
+                            <button className="removeButton" onClick={() => { handleRemoveCapsule(color.key) }}>x</button>
 
-                    </ul>
+                        </ul>
+                    </div>
                 )
             })}
         </>
