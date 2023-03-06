@@ -422,7 +422,7 @@ button {
   border: none;
   padding: 10px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 6px;
 }
 
 .submitButton {
@@ -475,6 +475,10 @@ ul {
 
 .lineWidth {
   padding-right: 15px;
+}
+
+.opacity {
+  padding: 0 15px;
 }
 
 input[type=range] {
@@ -619,6 +623,7 @@ a {
   }
 
   .lineWidth,
+  .opacity,
   input[type=range] {
     margin: 10px;
   }

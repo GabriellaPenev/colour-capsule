@@ -5,8 +5,10 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
     const canvasRef = useRef(null);
     const ctxRef = useRef(null);
     const lineWidthRef = useRef(null)
+    const opacityRef = useRef(null)
     const [isDrawing, setIsDrawing] = useState(false);
-    const [lineWidth, setLineWidth] = useState(5)
+    const [lineWidth, setLineWidth] = useState(75)
+    const [opacity, setOpacity] = useState(1);
 
     useEffect(() => {
 
@@ -19,13 +21,13 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
         canvas.style.border = 'solid 1px black'
 
         const ctx = canvas.getContext('2d');
+        ctxRef.current = ctx;
         ctx.scale(2, 2);
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
         ctx.lineWidth = lineWidth;
         ctx.fillStyle = "white";
         ctx.fillRect(0, 0, 3000, 3000);
-        ctxRef.current = ctx;
     }, []);
 
     // pass in a reference to nativeEvent to get the x and y coords
@@ -50,6 +52,7 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
         if (!isDrawing) return;
         const { offsetX, offsetY } = nativeEvent;
         ctxRef.current.globalCompositionOperation = 'source-over';
+        ctxRef.current.globalAlpha = opacity;
         ctxRef.current.lineTo(offsetX, offsetY);
         ctxRef.current.stroke();
     }
@@ -62,11 +65,13 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
             canvasRef.current.width,
             canvasRef.current.height,
             setSelectedColor('#000'),
-            setLineWidth(5)
+            setLineWidth(75),
+            setOpacity(1)
         )
 
         // reset the line thickness range value:
-        lineWidthRef.current.value = 5
+        lineWidthRef.current.value = 75
+        opacityRef.current.value = 1
     }
 
     const erase = () => {
@@ -86,11 +91,17 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
     return (
         <>
             <div className="controls">
-                <label className='lineWidth' htmlFor="lineWidth">Line Thickness</label>
+                <label className='lineWidth' htmlFor="lineWidth">Line Thickness: </label>
                 <input ref={lineWidthRef} type="range" id="lineWidth" name="lineWidth"
-                    min="5" max="150" defaultValue={lineWidth} step="5"
-                    style={{'background' : selectedColor}}
+                    min="1" max="150" defaultValue={lineWidth} step="5"
+                    style={{ 'background': selectedColor }}
                     onChange={(e) => setLineWidth(e.target.value)} />
+
+                <label className='opacity' htmlFor="opacity">Opacity: </label>
+                <input ref={opacityRef} type="range" id="opacity" name="opacity"
+                    min="0.1" max="1" defaultValue={opacity} step="0.1"
+                    style={{ 'background': selectedColor }}
+                    onChange={(e) => setOpacity(e.target.value)} />
             </div>
             <div className='canvasContainer'>
                 <canvas
