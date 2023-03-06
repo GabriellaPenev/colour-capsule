@@ -11,10 +11,10 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
     useEffect(() => {
 
         const canvas = canvasRef.current;
-        canvas.width = 1000;
-        canvas.height = 1000;
-        canvas.style.width = `500px`;
-        canvas.style.height = `500px`;
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        canvas.width = canvas.offsetWidth * 2;
+        canvas.height = canvas.offsetHeight * 2;
         canvas.style.backgroundColor = '#ffffff'
         canvas.style.border = 'solid 1px black'
 
@@ -24,7 +24,7 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
         ctx.lineJoin = 'round';
         ctx.lineWidth = lineWidth;
         ctx.fillStyle = "white";
-        ctx.fillRect(0, 0, 1600, 1000);
+        ctx.fillRect(0, 0, 3000, 3000);
         ctxRef.current = ctx;
     }, []);
 
