@@ -1,40 +1,42 @@
 import { useRef, useState, useEffect } from 'react';
 
-const Canvas = ({ colors}) => {
+const Canvas = ({ selectedColor, setSelectedColor }) => {
 
     const canvasRef = useRef(null);
     const ctxRef = useRef(null);
+    const lineWidthRef = useRef(null)
     const [isDrawing, setIsDrawing] = useState(false);
+    const [lineWidth, setLineWidth] = useState(5)
 
     useEffect(() => {
 
         const canvas = canvasRef.current;
-        canvas.width = 1600;
+        canvas.width = 1000;
         canvas.height = 1000;
-        canvas.style.width = `800px`;
+        canvas.style.width = `500px`;
         canvas.style.height = `500px`;
-
-        canvas.style.backgroundColor = 'white'
+        canvas.style.backgroundColor = '#ffffff'
         canvas.style.border = 'solid 1px black'
-        // Setting the context to enable us draw
 
         const ctx = canvas.getContext('2d');
         ctx.scale(2, 2);
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
-        ctx.strokeStyle = 'blue';
-        ctx.lineWidth = 20;
+        ctx.lineWidth = lineWidth;
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, 1600, 1000);
         ctxRef.current = ctx;
     }, []);
 
-    // start event on mouse x and y coords and setDrawing to true 
-    const startDrawing = ({ nativeEvent }) => {// pass in a reference to nativeEvent to get the x and y coords
+    // pass in a reference to nativeEvent to get the x and y coords
+    const startDrawing = ({ nativeEvent }) => {
         const { offsetX, offsetY } = nativeEvent;
         ctxRef.current.beginPath();
+        ctxRef.current.strokeStyle = selectedColor;
+        ctxRef.current.lineWidth = lineWidth;
         ctxRef.current.moveTo(offsetX, offsetY);
-        ctxRef.current.lineTo(offsetX, offsetY)
+        ctxRef.current.stroke();
         setIsDrawing(true);
-        console.log(colors)
     }
 
     // stop drawing and setDrawing to false
@@ -47,33 +49,66 @@ const Canvas = ({ colors}) => {
     const draw = ({ nativeEvent }) => {
         if (!isDrawing) return;
         const { offsetX, offsetY } = nativeEvent;
+        ctxRef.current.globalCompositionOperation = 'source-over';
         ctxRef.current.lineTo(offsetX, offsetY);
         ctxRef.current.stroke();
     }
 
-    // clear the canvas when done with the drawing
     const clear = () => {
+        // clear the canvas
         ctxRef.current.clearRect(
             0,
             0,
             canvasRef.current.width,
-            canvasRef.current.height
+            canvasRef.current.height,
+            setSelectedColor('#000'),
+            setLineWidth(5)
         )
+
+        // reset the line thickness range value:
+        lineWidthRef.current.value = 5
     }
 
+    const erase = () => {
+        ctxRef.current.strokeStyle = setSelectedColor('white');
+        ctxRef.current.globalCompositionOperation = 'destination-out';
+    }
+
+    const download = (e) => {
+        // download the canvas drawing
+        let link = e.currentTarget
+        link.setAttribute('download', 'image.png');
+        let image = canvasRef.current.toDataURL('image/png');
+        link.setAttribute('href', image);
+
+    }
 
     return (
-        <div className='canvasContainer'>
-            
-            <canvas
-                onMouseMove={draw}
-                onMouseDown={startDrawing}
-                onMouseUp={stopDrawing}
-                onMouseOut={stopDrawing}
-                ref={canvasRef}
-            />
-            <button onClick={clear}>Clear canvas</button>
-        </div>
+        <>
+            <div className="controls">
+                <label htmlFor="lineWidth">Line Thickness</label>
+                <input ref={lineWidthRef} type="range" id="lineWidth" name="lineWidth"
+                    min="5" max="150" defaultValue={lineWidth} step="5"
+                    onChange={(e) => setLineWidth(e.target.value)} />
+                <button onClick={clear}>Clear</button>
+                <button onClick={erase}>Erase</button>
+                <button>
+                    <a id='download-image-link' href="download-link" onClick={download}>Download Image</a>
+                </button>
+            </div>
+            <div className='canvasContainer'>
+                <canvas
+                    onMouseMove={draw}
+                    onMouseDown={startDrawing}
+                    onMouseUp={stopDrawing}
+                    onMouseOut={stopDrawing}
+                    onMouseEnter={stopDrawing}
+                    ref={canvasRef}
+                />
+
+            </div>
+
+        </>
     )
 }
 
