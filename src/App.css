@@ -133,7 +133,8 @@ textarea {
 
 button,
 input {
-  overflow: visible
+  overflow: visible;
+  cursor: pointer;
 }
 
 button,
@@ -410,8 +411,9 @@ input[type="color"] {
   margin: 0 20px;
 }
 
-input[type="text"]:focus {
-  outline: none;
+input[type="text"] {
+  box-shadow: .2em .2em .2em rgba(0, 0, 0, .1);
+  outline: black;
 }
 
 button {
@@ -464,21 +466,79 @@ ul {
   justify-content: center;
 }
 
+.controls {
+  margin: 30px 0 10px;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lineWidth {
+  padding-right: 15px;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  border-radius: 15px;
+  height: 8px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  background: #ddd;
+  border: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #ccc;
+}
+
+
 .canvasContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 500px; 
+  height: 500px;
 }
 
 canvas {
-  border-radius: 15px; 
+  border-radius: 15px;
+  margin: 15px 0;
 }
 
+.canvasActions {
+  display: flex;
+  justify-content: center;
+}
+
+.canvasActions button {
+  font-size: 0.7rem;
+  padding: 10px 6px;
+  width: calc(100% / 3);
+  border: black solid 1px;
+  box-shadow: .5em .5em .5em rgba(0, 0, 0, .1);
+  transition: 0.3s ease-in all;
+}
+
+
+.canvasActions>button:nth-child(2) {
+  margin: 0 8px;
+}
+
+
 .removeButton {
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
+  border: black solid 1px;
   text-align: center;
   position: absolute;
   width: 30px;
@@ -493,10 +553,18 @@ canvas {
   transition: all 0.3s;
 }
 
+.removeButton:hover,
+.removeButton:focus,
+.canvasActions button:hover,
+.canvasActions button:focus {
+  background-color: #000;
+  color: white;
+}
+
 li {
   padding: 20px;
   font-size: 0.8rem;
-  transition: 0.5s;
+  transition: 0.1s ease-in all;
 }
 
 li:hover {
@@ -507,8 +575,17 @@ li:hover {
   width: 90px;
   height: 90px;
   border-radius: 50%;
+  cursor: pointer;
+  transition: 0.1s ease-in all;
 }
 
+.results:hover {
+  scale: 1.1;
+}
+
+.results:active {
+  scale: 0.9
+}
 footer {
   margin-top: 80px;
   font-size: 0.8rem;
@@ -537,8 +614,13 @@ a {
 
 @media (max-width: 550px) {
 
-  .options {
-    margin: 0;
+  .controls {
+    flex-direction: column;
+  }
+
+  .lineWidth,
+  input[type=range] {
+    margin: 10px;
   }
 
   .submitButton {
@@ -575,9 +657,4 @@ a {
     font-size: 0.9rem;
   }
 
-  .removeButton:hover,
-  .removeButton:focus {
-    width: 25px;
-    height: 25px;
-  }
 }

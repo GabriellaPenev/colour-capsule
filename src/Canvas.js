@@ -77,8 +77,8 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
     const download = (e) => {
         // download the canvas drawing
         let link = e.currentTarget
-        link.setAttribute('download', 'image.png');
-        let image = canvasRef.current.toDataURL('image/png');
+        link.setAttribute('download', 'drawing.png');
+        let image = canvasRef.current.toDataURL('drawing/png');
         link.setAttribute('href', image);
 
     }
@@ -86,15 +86,11 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
     return (
         <>
             <div className="controls">
-                <label htmlFor="lineWidth">Line Thickness</label>
+                <label className='lineWidth' htmlFor="lineWidth">Line Thickness</label>
                 <input ref={lineWidthRef} type="range" id="lineWidth" name="lineWidth"
                     min="5" max="150" defaultValue={lineWidth} step="5"
+                    style={{'background' : selectedColor}}
                     onChange={(e) => setLineWidth(e.target.value)} />
-                <button onClick={clear}>Clear</button>
-                <button onClick={erase}>Erase</button>
-                <button>
-                    <a id='download-image-link' href="download-link" onClick={download}>Download Image</a>
-                </button>
             </div>
             <div className='canvasContainer'>
                 <canvas
@@ -105,7 +101,13 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
                     onMouseEnter={stopDrawing}
                     ref={canvasRef}
                 />
-
+            </div>
+            <div className="canvasActions">
+                <button onClick={clear}>Clear</button>
+                <button onClick={erase}>Erase</button>
+                <button>
+                    <a id='download-image-link' href="download-link" onClick={download}>Download drawing</a>
+                </button>
             </div>
 
         </>
