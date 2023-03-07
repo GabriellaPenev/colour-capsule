@@ -58,7 +58,6 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
     }
 
     const clear = () => {
-        // clear the canvas
         ctxRef.current.clearRect(
             0,
             0,
@@ -69,7 +68,7 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
             setOpacity(1)
         )
 
-        // reset the line thickness range value:
+        // reset the line thickness and opacity values:
         lineWidthRef.current.value = 75
         opacityRef.current.value = 1
     }
@@ -80,7 +79,6 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
     }
 
     const download = (e) => {
-        // download the canvas drawing
         let link = e.currentTarget
         link.setAttribute('download', 'drawing.png');
         let image = canvasRef.current.toDataURL('drawing/png');
@@ -93,7 +91,7 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
             <div className="controls">
                 <label className='lineWidth' htmlFor="lineWidth">Line Thickness: </label>
                 <input ref={lineWidthRef} type="range" id="lineWidth" name="lineWidth"
-                    min="1" max="150" defaultValue={lineWidth} step="5"
+                    min="1" max="145" defaultValue={lineWidth} step="1"
                     style={{ 'background': selectedColor }}
                     onChange={(e) => setLineWidth(e.target.value)} />
 
@@ -105,11 +103,16 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
             </div>
             <div className='canvasContainer'>
                 <canvas
+                    aria-label="Drawing Canvas" role="img" tabIndex="0"
                     onMouseMove={draw}
                     onMouseDown={startDrawing}
                     onMouseUp={stopDrawing}
                     onMouseOut={stopDrawing}
                     onMouseEnter={stopDrawing}
+                    onTouchStart={startDrawing}
+                    onTouchEnd={stopDrawing}
+                    onTouchMove={draw}
+                    onTouchCancel={stopDrawing}
                     ref={canvasRef}
                 />
             </div>
