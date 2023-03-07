@@ -96,6 +96,9 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
     }
 
     const download = (e) => {
+        ctxRef.fillStyle = "white";
+        canvasRef.current.style.backgroundColor = '#ffffff'
+        
         let link = e.currentTarget
         link.setAttribute('download', 'drawing.png');
         let image = canvasRef.current.toDataURL('drawing/png');
