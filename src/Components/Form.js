@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getDatabase, ref, onValue, push } from 'firebase/database';
-import firebase from './firebase';
+import firebase from '../firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -90,6 +90,7 @@ const Form = ({ setColors, resultRef }) => {
                         onChange={handleInputChange}
                         name='title'
                         label='title'
+                        maxLength={30}
                     />
                 </div>
                 <div className="options animate__animated animate__fadeIn">

@@ -57,7 +57,7 @@ const Canvas = forwardRef(({selectedColor, setSelectedColor}, ref) => {
         ctxRef.current.stroke();
     }
 
-    const clear = () => {
+    const reset = () => {
         ctxRef.current.clearRect(
             0,
             0,
@@ -71,6 +71,7 @@ const Canvas = forwardRef(({selectedColor, setSelectedColor}, ref) => {
         // reset the line thickness and opacity values:
         lineWidthRef.current.value = 75
         opacityRef.current.value = 1
+        ctxRef.fillStyle = "white";
     }
 
     const erase = () => {
@@ -83,13 +84,11 @@ const Canvas = forwardRef(({selectedColor, setSelectedColor}, ref) => {
         link.setAttribute('download', 'drawing.png');
         let image = canvasRef.current.toDataURL('drawing/png');
         link.setAttribute('href', image);
-
     }
-
 
     return (
         <>
-            <h3 ref={ref}>Create a drawing on the canvas below with your Capsule Colours!</h3>
+            <h3 className="intro introSpan" ref={ref}>Time to draw! Click on any of the capsule colours above to use it on the canvas. Download your painting, or reset it for a clean slate!</h3>
             <div className="controls">
                 <label className='lineWidth' htmlFor="lineWidth">Line Thickness: </label>
                 <input ref={lineWidthRef} type="range" id="lineWidth" name="lineWidth"
@@ -121,7 +120,7 @@ const Canvas = forwardRef(({selectedColor, setSelectedColor}, ref) => {
                 />
             </div>
             <div className="canvasActions">
-                <button onClick={clear}>Clear</button>
+                <button onClick={reset}>Reset</button>
                 <button onClick={erase}>Erase</button>
                 <button>
                     <a id='download-image-link' href="download-link" onClick={download}>Download drawing</a>

@@ -1,12 +1,9 @@
 import { useState, useRef } from 'react';
-import { getDatabase, ref, remove } from 'firebase/database';
-import firebase from './firebase';
-
-import Header from './Header';
-import Form from './Form';
-import Results from './Results';
-import Canvas from './Canvas';
-import Footer from './Footer';
+import Header from './Components/Header';
+import Form from './Components/Form';
+import Results from './Components/Results';
+import Canvas from './Components/Canvas';
+import Footer from './Components/Footer';
 import './App.css';
 
 function App() {
@@ -16,14 +13,6 @@ function App() {
   // state to bring data stored in firebase to the page: 
   const [colors, setColors] = useState([]);
   const [selectedColor, setSelectedColor] = useState('#000')
-
-  const handleRemoveCapsule = (capsuleID) => {
-    // dbRef points to the specific node of the capsule I want to remove
-    const database = getDatabase(firebase);
-    const dbRef = ref(database, `/${capsuleID}`);
-    // remove the node specific to the capsule id
-    remove(dbRef)
-}
 
   return (
     <div className="app wrapper">
@@ -38,7 +27,6 @@ function App() {
         <Results
           colors={colors}
           setSelectedColor={setSelectedColor}
-          handleRemoveCapsule={handleRemoveCapsule}
           />
 
         <Canvas
