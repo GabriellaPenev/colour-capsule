@@ -744,4 +744,8 @@ a {
     font-size: 0.9rem;
   }
 
+  .canvasContainer {
+    width: 75%;
+  }
+
 }

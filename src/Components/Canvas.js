@@ -73,6 +73,8 @@ const Canvas = forwardRef(({selectedColor, setSelectedColor}, ref) => {
         lineWidthRef.current.value = 75
         opacityRef.current.value = 1
         ctxRef.fillStyle = "white";
+        canvasRef.current.style.backgroundColor = '#ffffff'
+
     }
 
     const erase = () => {
