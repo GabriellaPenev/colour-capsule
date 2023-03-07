@@ -63,6 +63,7 @@ const Canvas = forwardRef(({selectedColor, setSelectedColor}, ref) => {
             0,
             canvasRef.current.width,
             canvasRef.current.height,
+            canvasRef.current.style.backgroundColor = '#ffffff',
             setSelectedColor('#000'),
             setLineWidth(75),
             setOpacity(1)
