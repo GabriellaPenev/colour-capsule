@@ -105,6 +105,18 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
         canvasRef.current.style.backgroundColor = '#ffffff'
     }
 
+    const changeOpacity = (e) => {
+        setOpacity(e.target.value)
+        ctxRef.fillStyle = "white";
+        canvasRef.current.style.backgroundColor = '#ffffff'
+    }
+
+    const changeLinedWidth = (e) => {
+        setLineWidth(e.target.value)
+        ctxRef.fillStyle = "white";
+        canvasRef.current.style.backgroundColor = '#ffffff'
+    }
+
     return (
         <>
             <h3 className="intro introSpan" ref={ref}>Time to draw! Click on any of the capsule colours above to use it on the canvas. Download your painting, or reset it for a clean slate!</h3>
@@ -113,13 +125,13 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
                 <input ref={lineWidthRef} type="range" id="lineWidth" name="lineWidth"
                     min="1" max="145" defaultValue={lineWidth} step="1"
                     style={{ 'background': selectedColor }}
-                    onChange={(e) => setLineWidth(e.target.value)} />
+                    onChange={(e) => changeLinedWidth(e)} />
 
                 <label className='opacity' htmlFor="opacity">Opacity: </label>
                 <input ref={opacityRef} type="range" id="opacity" name="opacity"
                     min="0.1" max="1" defaultValue={opacity} step="0.1"
                     style={{ 'background': selectedColor }}
-                    onChange={(e) => setOpacity(e.target.value)} />
+                    onChange={(e) => changeOpacity(e)} />
             </div>
             <div className='canvasContainer'>
                 <canvas
