@@ -77,7 +77,7 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
         ctxRef.current.strokeStyle = setSelectedColor('white');
         ctxRef.current.globalCompositionOperation = 'destination-out';
     }
-
+    
     const download = (e) => {
         let link = e.currentTarget
         link.setAttribute('download', 'drawing.png');
@@ -85,7 +85,9 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
         link.setAttribute('href', image);
 
     }
-
+    
+    // add e.preventDefault() in touchStart function to prevent swiping / refresh from pulling down ``
+    
     return (
         <>
             <div className="controls">
@@ -104,16 +106,18 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
             <div className='canvasContainer'>
                 <canvas
                     aria-label="Drawing Canvas" role="img" tabIndex="0"
+                    ref={canvasRef}
+
                     onMouseMove={draw}
                     onMouseDown={startDrawing}
                     onMouseUp={stopDrawing}
                     onMouseOut={stopDrawing}
                     onMouseEnter={stopDrawing}
-                    onTouchStart={startDrawing}
-                    onTouchEnd={stopDrawing}
-                    onTouchMove={draw}
-                    onTouchCancel={stopDrawing}
-                    ref={canvasRef}
+
+                    onPointerDown={startDrawing}
+                    onPointerUp={stopDrawing}
+                    onPointerMove={draw}
+                    // style={{ touchAction: none}}
                 />
             </div>
             <div className="canvasActions">
