@@ -69,7 +69,7 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
 
     const reset = () => {
         ctxRef.fillStyle = "white"
-        
+
         ctxRef.current.clearRect(
             0,
             0,
@@ -82,8 +82,8 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
         )
 
         // reset the line thickness and opacity values:
-        lineWidthRef.current.value = 75
-        opacityRef.current.value = 1
+        // lineWidthRef.current.value = 75
+        // opacityRef.current.value = 1
 
         ctxRef.fillStyle = "white";
         canvasRef.current.style.backgroundColor = '#ffffff'
