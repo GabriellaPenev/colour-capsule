@@ -38,6 +38,8 @@ const Canvas = forwardRef(({selectedColor, setSelectedColor}, ref) => {
         ctxRef.current.lineWidth = lineWidth;
         ctxRef.current.moveTo(offsetX, offsetY);
         ctxRef.current.stroke();
+        canvasRef.current.style.backgroundColor = '#ffffff'
+
         setIsDrawing(true);
     }
 
@@ -55,6 +57,8 @@ const Canvas = forwardRef(({selectedColor, setSelectedColor}, ref) => {
         ctxRef.current.globalAlpha = opacity;
         ctxRef.current.lineTo(offsetX, offsetY);
         ctxRef.current.stroke();
+        canvasRef.current.style.backgroundColor = '#ffffff';
+
     }
 
     const reset = () => {
