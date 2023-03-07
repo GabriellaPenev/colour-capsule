@@ -68,6 +68,8 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
     }
 
     const reset = () => {
+        ctxRef.fillStyle = "white"
+        
         ctxRef.current.clearRect(
             0,
             0,
@@ -98,14 +100,14 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
     const download = (e) => {
         ctxRef.fillStyle = "white";
         canvasRef.current.style.backgroundColor = '#ffffff'
-
+        
         let link = e.currentTarget
         link.setAttribute('download', 'drawing.png');
         let image = canvasRef.current.toDataURL('drawing/png');
         link.setAttribute('href', image);
 
         ctxRef.fillStyle = "white";
-        canvasRef.current.style.backgroundColor = '#ffffff !important'
+        canvasRef.current.style.backgroundColor = '#ffffff'
     }
 
     const changeOpacity = (e) => {
