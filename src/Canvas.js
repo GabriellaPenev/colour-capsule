@@ -117,7 +117,7 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
                     onPointerDown={startDrawing}
                     onPointerUp={stopDrawing}
                     onPointerMove={draw}
-                    // style={{ touchAction: none}}
+                    style={{ touchAction: none}}
                 />
             </div>
             <div className="canvasActions">
