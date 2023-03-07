@@ -38,6 +38,7 @@ const Canvas = forwardRef(({selectedColor, setSelectedColor}, ref) => {
         ctxRef.current.lineWidth = lineWidth;
         ctxRef.current.moveTo(offsetX, offsetY);
         ctxRef.current.stroke();
+        ctxRef.current.fillStyle = 'white';
         canvasRef.current.style.backgroundColor = '#ffffff'
 
         setIsDrawing(true);
