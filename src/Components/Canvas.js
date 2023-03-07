@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { forwardRef } from "react";
 
-const Canvas = forwardRef(({selectedColor, setSelectedColor}, ref) => {
+const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
     const canvasRef = useRef(null);
     const ctxRef = useRef(null);
     const lineWidthRef = useRef(null)
@@ -38,6 +38,7 @@ const Canvas = forwardRef(({selectedColor, setSelectedColor}, ref) => {
         ctxRef.current.lineWidth = lineWidth;
         ctxRef.current.moveTo(offsetX, offsetY);
         ctxRef.current.stroke();
+
         ctxRef.current.fillStyle = 'white';
         canvasRef.current.style.backgroundColor = '#ffffff'
 
@@ -48,6 +49,9 @@ const Canvas = forwardRef(({selectedColor, setSelectedColor}, ref) => {
     const stopDrawing = () => {
         ctxRef.current.closePath();
         setIsDrawing(false);
+
+        canvasRef.current.style.backgroundColor = '#ffffff'
+        ctxRef.current.fillStyle = 'white';
     }
 
     // continue drawing if drawing state is true, at mouse x and y coords
@@ -58,8 +62,9 @@ const Canvas = forwardRef(({selectedColor, setSelectedColor}, ref) => {
         ctxRef.current.globalAlpha = opacity;
         ctxRef.current.lineTo(offsetX, offsetY);
         ctxRef.current.stroke();
-        canvasRef.current.style.backgroundColor = '#ffffff';
 
+        canvasRef.current.style.backgroundColor = '#ffffff';
+        ctxRef.current.fillStyle = 'white';
     }
 
     const reset = () => {
@@ -77,14 +82,17 @@ const Canvas = forwardRef(({selectedColor, setSelectedColor}, ref) => {
         // reset the line thickness and opacity values:
         lineWidthRef.current.value = 75
         opacityRef.current.value = 1
+
         ctxRef.fillStyle = "white";
         canvasRef.current.style.backgroundColor = '#ffffff'
-
     }
 
     const erase = () => {
         ctxRef.current.strokeStyle = setSelectedColor('white');
         ctxRef.current.globalCompositionOperation = 'destination-out';
+
+        ctxRef.fillStyle = "white";
+        canvasRef.current.style.backgroundColor = '#ffffff'
     }
 
     const download = (e) => {
