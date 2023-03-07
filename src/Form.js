@@ -4,7 +4,7 @@ import firebase from './firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function Form({ setColors }) {
+const Form = ({ setColors, resultRef }) => {
 
     const initialValues = {
         title: '',
@@ -14,7 +14,8 @@ function Form({ setColors }) {
         color4: "#ffffff",
         color5: "#ffffff"
     };
-    // state to store user's input data and push them to firebase:
+
+    // store user's input data and push them to firebase:
     const [userInput, setUserInput] = useState(initialValues);
 
     const handleInputChange = (e) => {
@@ -38,7 +39,6 @@ function Form({ setColors }) {
             }
             // update the component's state using the local array dbColors
             setColors(dbColors);
-            // console.log(dbColors)
         });
     }, [])
 
@@ -48,6 +48,7 @@ function Form({ setColors }) {
         const database = getDatabase(firebase)
         const dbRef = ref(database)
 
+        // error handling if user doesn't add a capsule name, or selects white / black more than once
         let white = 0;
         let black = 0;
         for (let value in userInput) {
@@ -68,10 +69,9 @@ function Form({ setColors }) {
             toast('🚫 You have selected black as more than one of your capsule colours!')
         } else {
 
-            // add data to firebase, pass in where (dbRef) and what is going (userInput):
             push(dbRef, userInput);
-            // clear the inputs after it loads to firebase and page:
             setUserInput(initialValues);
+            resultRef.current.previousSibling.scrollIntoView({block: "start", inline: "nearest", behavior: "smooth"});
         }
     }
 

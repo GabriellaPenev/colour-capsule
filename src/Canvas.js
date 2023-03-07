@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
+import { forwardRef } from "react";
 
-const Canvas = ({ selectedColor, setSelectedColor }) => {
-
+const Canvas = forwardRef(({selectedColor, setSelectedColor}, ref) => {
     const canvasRef = useRef(null);
     const ctxRef = useRef(null);
     const lineWidthRef = useRef(null)
@@ -49,7 +49,6 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
 
     // continue drawing if drawing state is true, at mouse x and y coords
     const draw = ({ nativeEvent }) => {
-        // e.preventDefault()
         if (!isDrawing) return;
         const { offsetX, offsetY } = nativeEvent;
         ctxRef.current.globalCompositionOperation = 'source-over';
@@ -78,7 +77,7 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
         ctxRef.current.strokeStyle = setSelectedColor('white');
         ctxRef.current.globalCompositionOperation = 'destination-out';
     }
-    
+
     const download = (e) => {
         let link = e.currentTarget
         link.setAttribute('download', 'drawing.png');
@@ -86,10 +85,11 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
         link.setAttribute('href', image);
 
     }
-    
-    
+
+
     return (
         <>
+            <h3 ref={ref}>Create a drawing on the canvas below with your Capsule Colours!</h3>
             <div className="controls">
                 <label className='lineWidth' htmlFor="lineWidth">Line Thickness: </label>
                 <input ref={lineWidthRef} type="range" id="lineWidth" name="lineWidth"
@@ -117,7 +117,7 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
                     onPointerDown={startDrawing}
                     onPointerUp={stopDrawing}
                     onPointerMove={draw}
-                    style={{ 'touchAction': 'none'}}
+                    style={{ 'touchAction': 'none' }}
                 />
             </div>
             <div className="canvasActions">
@@ -130,6 +130,6 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
 
         </>
     )
-}
+})
 
 export default Canvas;

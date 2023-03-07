@@ -5,8 +5,8 @@ const Header = () => {
                 <span className='title firstColor'>Colour </span>
                 <span className='title secondColor'>Capsule</span>
             </h1>
-            <p>Create a colour capsule with up to 5 colours, and use them to create a custom drawing, or abstract painting below!</p>
-            <p>You can use all capsule colours in your painting, or choose colours from one capsule at a time! Download your drawing to keep it forever!</p>
+            <p>Create a colour capsule with 5 custom colours, and use it to make a painting on the canvas below!</p>
+            <p>Download your painting to keep it forever!</p>
         </header>
     )
 }

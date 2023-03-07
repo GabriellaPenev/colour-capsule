@@ -1,16 +1,5 @@
-import { getDatabase, ref, remove } from 'firebase/database';
-import firebase from './firebase';
-// import { useState} from 'react';
-function Results({ colors, setSelectedColor }) {
 
-
-    const handleRemoveCapsule = (capsuleID) => {
-        // dbRef points to the specific node of the capsule I want to remove
-        const database = getDatabase(firebase);
-        const dbRef = ref(database, `/${capsuleID}`);
-        // remove the node specific to the capsule id
-        remove(dbRef)
-    }
+const Results = ({colors, setSelectedColor, handleRemoveCapsule}) => {
 
     return (
         <>
