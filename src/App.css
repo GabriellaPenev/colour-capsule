@@ -488,7 +488,6 @@ input[type=range] {
 }
 
 input[type=range]::-webkit-slider-runnable-track {
-  background: #ddd;
   border: none;
 }
 
@@ -501,10 +500,52 @@ input[type=range]:focus {
   outline: none;
 }
 
-input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #ccc;
+/* mobile slider */
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 26px;
+  width: 26px;
+  background: whitesmoke;
+  border: solid 1px black;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
+input[type="range"]::-moz-range-thumb {
+  height: 26px;
+  width: 26px;
+  background: whitesmoke;
+  border: solid 1px black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="range"]::-ms-thumb {
+  height: 26px;
+  width: 26px;
+  background: whitesmoke;
+  border-radius: 50%;
+  border: solid 1px black;
+  cursor: pointer;
+}
+
+/* mobile track */
+
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  cursor: pointer;
+}
+
+input[type="range"]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+}
 
 .canvasContainer {
   display: flex;

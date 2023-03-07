@@ -49,6 +49,7 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
 
     // continue drawing if drawing state is true, at mouse x and y coords
     const draw = ({ nativeEvent }) => {
+        // e.preventDefault()
         if (!isDrawing) return;
         const { offsetX, offsetY } = nativeEvent;
         ctxRef.current.globalCompositionOperation = 'source-over';
@@ -86,7 +87,6 @@ const Canvas = ({ selectedColor, setSelectedColor }) => {
 
     }
     
-    // add e.preventDefault() in touchStart function to prevent swiping / refresh from pulling down ``
     
     return (
         <>
