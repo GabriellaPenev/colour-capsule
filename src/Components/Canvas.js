@@ -68,7 +68,6 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
     }
 
     const reset = () => {
-        ctxRef.fillStyle = "white"
 
         ctxRef.current.clearRect(
             0,
@@ -82,8 +81,8 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
         )
 
         // reset the line thickness and opacity values:
-        // lineWidthRef.current.value = 75
-        // opacityRef.current.value = 1
+        lineWidthRef.current.value = 75
+        opacityRef.current.value = 1
 
         ctxRef.fillStyle = "white";
         canvasRef.current.style.backgroundColor = '#ffffff'
@@ -129,13 +128,13 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
                 <label className='lineWidth' htmlFor="lineWidth">Line Thickness: </label>
                 <input ref={lineWidthRef} type="range" id="lineWidth" name="lineWidth"
                     min="1" max="145" defaultValue={lineWidth} step="1"
-                    style={{ 'background': selectedColor }}
+                    style={{ 'background': selectedColor, 'border' : 'black 1px solid'}}
                     onChange={(e) => changeLinedWidth(e)} />
 
                 <label className='opacity' htmlFor="opacity">Opacity: </label>
                 <input ref={opacityRef} type="range" id="opacity" name="opacity"
                     min="0.1" max="1" defaultValue={opacity} step="0.1"
-                    style={{ 'background': selectedColor }}
+                    style={{ 'background': selectedColor, 'border' : 'black 1px solid' }}
                     onChange={(e) => changeOpacity(e)} />
             </div>
             <div className='canvasContainer'>

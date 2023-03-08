@@ -295,6 +295,7 @@ body,
 h1 {
   font-size: clamp(2rem, 8vw, 4.4rem);
   font-weight: 700;
+  letter-spacing: -3px;
   margin-top: 40px;
 }
 
@@ -454,14 +455,14 @@ button {
   border: none;
   padding: 10px;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 40px;
 }
 
 .submitButton {
   text-transform: uppercase;
   letter-spacing: 5px;
   font-weight: 800;
-  width: 80%;
+  width: 60%;
   margin: 20px 0;
   box-shadow: .5em .5em .5em rgba(0, 0, 0, .1);
   transition: 0.5s ease;
@@ -529,20 +530,16 @@ input[type=range] {
   height: 8px;
 }
 
-input[type=range]::-webkit-slider-runnable-track {
-  border: none;
-}
-
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  border: none;
-}
-
 input[type=range]:focus {
   outline: none;
 }
 
 /* mobile slider */
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+}
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -575,6 +572,7 @@ input[type="range"]::-ms-thumb {
 /* mobile track */
 
 input[type="range"]::-webkit-slider-runnable-track {
+  border: none;
   width: 100%;
   cursor: pointer;
 }
@@ -648,7 +646,7 @@ canvas {
 }
 
 li {
-  padding: 20px;
+  padding: 24px;
   font-size: 0.8rem;
   transition: 0.1s ease-in all;
 }
