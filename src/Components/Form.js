@@ -81,7 +81,7 @@ const Form = ({ setColors, resultRef }) => {
         <>
             <form action="submit">
                 <div className='animate__animated animate__fadeIn'>
-                    <label htmlFor="title">Capsule Name: </label>
+                    <label htmlFor="title">Capsule Name </label>
                     <input
                         autoComplete='off'
                         type="text"

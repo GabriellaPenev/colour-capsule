@@ -295,7 +295,7 @@ body,
 h1 {
   font-size: clamp(2rem, 8vw, 4.4rem);
   font-weight: 700;
-  letter-spacing: -3px;
+  letter-spacing: -4px;
   margin-top: 40px;
 }
 
@@ -512,7 +512,7 @@ ul {
   margin: 25px 0 10px;
   display: flex;
   justify-content: center;
-  align-items: normal;
+  align-items: center;
   font-weight: bold;
 }
 
@@ -605,9 +605,9 @@ canvas {
 }
 
 .canvasActions button {
-  font-size: 0.7rem;
+  font-size: clamp(0.65rem, 2vw, 0.85rem);
   font-weight: bold;
-  padding: 10px 6px;
+  padding: 10px 8px;
   width: calc(100% / 3);
   border: black solid 1px;
   box-shadow: .5em .5em .5em rgba(0, 0, 0, .1);
@@ -619,6 +619,15 @@ canvas {
   margin: 0 8px;
 }
 
+.scrollButton {
+  font-size: 0.75rem;
+  margin-bottom: 35px;
+  text-transform: capitalize;
+  font-weight: bold;
+  border: black solid 1px;
+  box-shadow: .5em .5em .5em rgba(0, 0, 0, .1);
+  transition: 0.3s ease-in all;
+}
 
 .removeButton {
   background-color: white;
@@ -640,7 +649,9 @@ canvas {
 .removeButton:hover,
 .removeButton:focus,
 .canvasActions button:hover,
-.canvasActions button:focus {
+.canvasActions button:focus,
+.scrollButton:hover, 
+.scrollButton:focus {
   background-color: #000;
   color: white;
 }
@@ -672,23 +683,39 @@ li:hover {
 }
 
 footer {
-  margin-top: 80px;
-  font-size: 0.8rem;
+  margin-top: 40px;
+  font-size: 0.65rem;
 }
 
 a {
   text-decoration: none;
 }
 
+footer a {
+  text-decoration: underline;
+  display: block;
+  line-height: 1.2rem;
+  font-weight: bold;
+}
+
 
 @media (max-width: 800px) {
 
-  input[type="color"] {
-    margin: 0 10px;
-  }
-
   header p {
     line-height: 1.1rem;
+  }
+
+  .options label {
+    width: 72px;
+  }
+
+  .controls {
+    flex-direction: column; 
+    margin: 0;
+  }
+
+  input[type=range] {
+    margin: 12px 0 22px;
   }
 
   .submitButton {
@@ -699,17 +726,20 @@ a {
 
 @media (max-width: 550px) {
 
+  .wrapper {
+    width: 85%
+  }
+
+  .intro {
+    width: 100%;
+  }
+
   input[type="text"] {
     margin: 3px 0;
   }
 
-  .controls {
-    flex-direction: column; 
-    margin: 0;
-  }
-
-  input[type=range] {
-    margin: 12px 0 18px;
+  .options label {
+    width: 62px;
   }
 
   .submitButton {
@@ -740,12 +770,6 @@ a {
     width: 22px;
     height: 22px;
     font-size: 0.9rem;
-  }
-
-  .canvasContainer {
-    width: 85%;
-    margin: 0 auto;
-    margin-bottom: 15px;
   }
 
 }
