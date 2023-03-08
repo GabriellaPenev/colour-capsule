@@ -39,8 +39,8 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
         ctxRef.current.moveTo(offsetX, offsetY);
         ctxRef.current.stroke();
 
-        ctxRef.current.fillStyle = 'white';
-        canvasRef.current.style.backgroundColor = '#ffffff'
+        // ctxRef.current.fillStyle = 'white';
+        // canvasRef.current.style.backgroundColor = '#ffffff'
 
         setIsDrawing(true);
     }
@@ -50,8 +50,8 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
         ctxRef.current.closePath();
         setIsDrawing(false);
 
-        canvasRef.current.style.backgroundColor = '#ffffff'
-        ctxRef.current.fillStyle = 'white';
+        // canvasRef.current.style.backgroundColor = '#ffffff'
+        // ctxRef.current.fillStyle = 'white';
     }
 
     // continue drawing if drawing state is true, at mouse x and y coords
@@ -63,8 +63,8 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
         ctxRef.current.lineTo(offsetX, offsetY);
         ctxRef.current.stroke();
 
-        canvasRef.current.style.backgroundColor = '#ffffff';
-        ctxRef.current.fillStyle = 'white';
+        // canvasRef.current.style.backgroundColor = '#ffffff';
+        // ctxRef.current.fillStyle = 'white';
     }
 
     const reset = () => {
@@ -84,46 +84,46 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
         lineWidthRef.current.value = 75
         opacityRef.current.value = 1
 
-        ctxRef.fillStyle = "white";
-        canvasRef.current.style.backgroundColor = '#ffffff'
+        // ctxRef.fillStyle = "white";
+        // canvasRef.current.style.backgroundColor = '#ffffff'
     }
 
     const erase = () => {
         ctxRef.current.strokeStyle = setSelectedColor('white');
         ctxRef.current.globalCompositionOperation = 'destination-out';
 
-        ctxRef.fillStyle = "white";
-        canvasRef.current.style.backgroundColor = '#ffffff'
+        // ctxRef.fillStyle = "white";
+        // canvasRef.current.style.backgroundColor = '#ffffff'
     }
 
     const download = (e) => {
-        ctxRef.fillStyle = "white";
-        canvasRef.current.style.backgroundColor = '#ffffff'
+        // ctxRef.fillStyle = "white";
+        // canvasRef.current.style.backgroundColor = '#ffffff'
         
         let link = e.currentTarget
         link.setAttribute('download', 'drawing.png');
         let image = canvasRef.current.toDataURL('drawing/png');
         link.setAttribute('href', image);
 
-        ctxRef.fillStyle = "white";
-        canvasRef.current.style.backgroundColor = '#ffffff'
+        // ctxRef.fillStyle = "white";
+        // canvasRef.current.style.backgroundColor = '#ffffff'
     }
 
     const changeOpacity = (e) => {
         setOpacity(e.target.value)
-        ctxRef.fillStyle = "white";
-        canvasRef.current.style.backgroundColor = '#ffffff'
+        // ctxRef.fillStyle = "white";
+        // canvasRef.current.style.backgroundColor = '#ffffff'
     }
 
     const changeLinedWidth = (e) => {
         setLineWidth(e.target.value)
-        ctxRef.fillStyle = "white";
-        canvasRef.current.style.backgroundColor = '#ffffff'
+        // ctxRef.fillStyle = "white";
+        // canvasRef.current.style.backgroundColor = '#ffffff'
     }
 
     return (
         <>
-            <h3 className="intro introSpan" ref={ref}>Time to draw! Click on any of the capsule colours above to use it on the canvas. Download your painting, or reset it for a clean slate!</h3>
+            <h3 className="intro introSpan" ref={ref}>Time to draw! Click on any of the capsule colours above to use on the canvas. Once you're finished you can download your painting, or reset it for a clean slate!</h3>
             <div className="controls">
                 <label className='lineWidth' htmlFor="lineWidth">Line Thickness: </label>
                 <input ref={lineWidthRef} type="range" id="lineWidth" name="lineWidth"
@@ -141,13 +141,11 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
                 <canvas
                     aria-label="Drawing Canvas" role="img" tabIndex="0"
                     ref={canvasRef}
-
                     onMouseMove={draw}
                     onMouseDown={startDrawing}
                     onMouseUp={stopDrawing}
                     onMouseOut={stopDrawing}
                     onMouseEnter={stopDrawing}
-
                     onPointerDown={startDrawing}
                     onPointerUp={stopDrawing}
                     onPointerMove={draw}
