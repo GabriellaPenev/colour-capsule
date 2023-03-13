@@ -159,7 +159,7 @@ const Form = ({ setColors, resultRef }) => {
 
             <ToastContainer
                 newestOnTop={false}
-                pauseOnFocusLoss
+                autoClose={2000}
             />
         </>
     )

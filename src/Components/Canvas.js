@@ -2,18 +2,34 @@ import { useRef, useState, useEffect } from 'react';
 import { forwardRef } from "react";
 
 const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
+    
     const canvasRef = useRef(null);
     const ctxRef = useRef(null);
     const lineWidthRef = useRef(null)
     const opacityRef = useRef(null)
+
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [isDrawing, setIsDrawing] = useState(false);
-    const [lineWidth, setLineWidth] = useState(75)
+    const [lineWidth, setLineWidth] = useState(60)
     const [opacity, setOpacity] = useState(1);
 
     useEffect(() => {
+        const handleWindowResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
 
+        window.addEventListener('resize', handleWindowResize);
+
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    });
+
+
+
+    useEffect(() => {
         const canvas = canvasRef.current;
-        canvas.style.width = "100%";
+        canvas.style.width = '100%';
         canvas.style.height = "100%";
         canvas.width = canvas.offsetWidth * 2;
         canvas.height = canvas.offsetHeight * 2;
@@ -28,7 +44,9 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
         ctx.lineWidth = lineWidth;
         ctx.fillStyle = "white";
         ctx.fillRect(0, 0, 3000, 3000);
-    }, []);
+
+    }, [windowWidth]);
+
 
     // pass in a reference to nativeEvent to get the x and y coords
     const startDrawing = ({ nativeEvent }) => {
@@ -67,12 +85,12 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
             canvasRef.current.height,
             canvasRef.current.style.backgroundColor = '#ffffff',
             setSelectedColor('#000'),
-            setLineWidth(75),
+            setLineWidth(60),
             setOpacity(1)
         )
 
         // reset the line thickness and opacity values:
-        lineWidthRef.current.value = 75
+        lineWidthRef.current.value = 60
         opacityRef.current.value = 1
     }
 
@@ -81,7 +99,7 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
         ctxRef.current.globalCompositionOperation = 'destination-out';
     }
 
-    const download = (e) => {   
+    const download = (e) => {
         let link = e.currentTarget
         link.setAttribute('download', 'drawing.png');
         let image = canvasRef.current.toDataURL('drawing/png');
@@ -96,20 +114,42 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
         setLineWidth(e.target.value)
     }
 
+
+    // function resize() {
+    //     // Resize the window, not the pen
+    //     // Our canvas must cover full height of screen
+    //     // regardless of the resolution
+    //     var height = window.innerHeight;
+
+    //     // So we need to calculate the proper scaled width
+    //     // that should work well with every resolution
+    //     var ratio = canvasRef.current.width / canvasRef.current.height;
+    //     var width = height * ratio;
+
+    //     canvasRef.current.style.width = width + 'px';
+    //     canvasRef.current.style.height = height + 'px';
+    // }
+
+    // window.addEventListener('load', resize, false);
+    // window.addEventListener('resize', resize, false);
+
+
+
+
     return (
         <>
             <h3 className="intro introSpan" ref={ref}>Time to draw! Click on any of the capsule colours above to use on the canvas. Once you're finished you can download your painting, or reset it for a clean slate!</h3>
             <div className="controls">
                 <label className='lineWidth' htmlFor="lineWidth">Line Thickness: </label>
                 <input ref={lineWidthRef} type="range" id="lineWidth" name="lineWidth"
-                    min="1" max="145" defaultValue={lineWidth} step="1"
-                    style={{ 'background': selectedColor, 'border' : 'black 1px solid'}}
+                    min="1" max="120" defaultValue={lineWidth} step="1"
+                    style={{ 'background': selectedColor, 'border': 'black 1px solid' }}
                     onChange={(e) => changeLinedWidth(e)} />
 
                 <label className='opacity' htmlFor="opacity">Opacity: </label>
                 <input ref={opacityRef} type="range" id="opacity" name="opacity"
                     min="0.1" max="1" defaultValue={opacity} step="0.1"
-                    style={{ 'background': selectedColor, 'border' : 'black 1px solid' }}
+                    style={{ 'background': selectedColor, 'border': 'black 1px solid' }}
                     onChange={(e) => changeOpacity(e)} />
             </div>
             <div className='canvasContainer'>
