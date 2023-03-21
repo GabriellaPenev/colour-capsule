@@ -111,7 +111,7 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
     }
 
     return (
-        <>
+        <div className='animate__animated animate__fadeIn'>
             <h3 className="intro introSpan" ref={ref}>Time to draw! Click on any of the capsule colours above to use on the canvas. Once you're finished you can download your painting, or reset it for a clean slate!</h3>
             <div className="controls">
                 <label className='lineWidth' htmlFor="lineWidth">Line Thickness: </label>
@@ -149,7 +149,7 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
                 </button>
             </div>
 
-        </>
+        </div>
     )
 })
 

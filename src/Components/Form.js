@@ -28,7 +28,7 @@ const Form = ({ setColors, resultRef }) => {
 
     useEffect(() => {
         const database = getDatabase(firebase)
-        const dbRef = ref(database)
+        const dbRef = ref(database, `/colors`);
 
         onValue(dbRef, (response) => {
             const dbColors = [];
@@ -46,7 +46,7 @@ const Form = ({ setColors, resultRef }) => {
         e.preventDefault()
 
         const database = getDatabase(firebase)
-        const dbRef = ref(database)
+        const dbRef = ref(database, `/colors`);
 
         // error handling if user doesn't add a capsule name, or selects white / black more than once
         let white = 0;
