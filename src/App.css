@@ -445,10 +445,6 @@ input[type="color"] {
   margin: 0 20px;
 }
 
-input[type="text"] {
-  outline: whitesmoke;
-}
-
 button {
   font-family: 'Comfortaa', cursive;
   background: white;

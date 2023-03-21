@@ -10,7 +10,7 @@ Colour Capsule is a web application that allows users to create custom colour co
 - Display all created colour capsules in list form on the page, stored with Firebase
 - Ability to select any colour stored in a colour capsule to use on the HTML Canvas
 - Ability to change the opacity and thickness of the paint on canvas 
-- Ability to erase, reset, or download the drawing as a PNG image to the user's computer
+- Ability to erase, reset, or download the drawing as a PNG image file to the user's computer
 - Responsive down to 320px / mobile friendly design
 
 ## Technologies Used
@@ -28,6 +28,7 @@ Colour Capsule is a web application that allows users to create custom colour co
 
 ## Preview
 ![Screenshot of the colour capsule app](./src/assets/screenshots/colour-capsules.png 'Colour Capsule')
+![Screenshot of the colour capsule app](./src/assets/screenshots/select-colours.png 'Colour Capsule')
 ![Screenshot of the colour capsule app](./src/assets/screenshots/blank-canvas.png 'Canvas')
 ![Screenshot of the colour capsule app](./src/assets/screenshots/canvas-drawing.png 'Drawing on Canvas')
 ![Screenshot of the colour capsule app](./src/assets/screenshots/erase-drawing.png 'Erase Drawing')
