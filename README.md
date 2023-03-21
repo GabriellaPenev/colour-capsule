@@ -28,6 +28,6 @@ Colour Capsule is a web application that allows users to create custom colour co
 
 ## Preview
 ![Screenshot of the colour capsule app](./src/assets/screenshots/colour-capsules.png 'Colour Capsule')
-![Screenshot of the colour capsule app](./src/assets/screenshots/canvas.png 'Canvas')
+![Screenshot of the colour capsule app](./src/assets/screenshots/blank-canvas.png 'Canvas')
 ![Screenshot of the colour capsule app](./src/assets/screenshots/canvas-drawing.png 'Drawing on Canvas')
 ![Screenshot of the colour capsule app](./src/assets/screenshots/erase-drawing.png 'Erase Drawing')
