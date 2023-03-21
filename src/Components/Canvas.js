@@ -1,8 +1,9 @@
 import { useRef, useState, useEffect } from 'react';
 import { forwardRef } from "react";
+// import UploadCanvas from './UploadCanvas';
 
 const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
-    
+
     const canvasRef = useRef(null);
     const ctxRef = useRef(null);
     const lineWidthRef = useRef(null)
@@ -110,6 +111,7 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
         setLineWidth(e.target.value)
     }
 
+
     return (
         <>
             <h3 className="intro introSpan" ref={ref}>Time to draw! Click on any of the capsule colours above to use on the canvas. Once you're finished you can download your painting, or reset it for a clean slate!</h3>
@@ -149,6 +151,7 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
                 </button>
             </div>
 
+            {/* <UploadCanvas canvasRef={canvasRef} /> */}
         </>
     )
 })

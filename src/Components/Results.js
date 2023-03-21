@@ -6,11 +6,12 @@ const Results = ({colors, setSelectedColor}) => {
     const handleRemoveCapsule = (capsuleID) => {
         // dbRef points to the specific node of the capsule I want to remove
         const database = getDatabase(firebase);
-        const dbRef = ref(database, `/${capsuleID}`);
+        const dbRef = ref(database, `colors/${capsuleID}`);
         // remove the node specific to the capsule id
         remove(dbRef)
     }
     
+
     return (
         <>
             {colors.map((color) => {

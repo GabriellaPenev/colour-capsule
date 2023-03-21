@@ -678,6 +678,11 @@ li:hover {
   scale: 0.9
 }
 
+/* HTML CANVAS IMAGE STYLING */
+.image-container img {
+  width: 30%;
+}
+
 footer {
   margin-top: 40px;
   font-size: 0.65rem;

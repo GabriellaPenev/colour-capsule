@@ -28,7 +28,7 @@ const Form = ({ setColors, resultRef }) => {
 
     useEffect(() => {
         const database = getDatabase(firebase)
-        const dbRef = ref(database)
+        const dbRef =  ref(database, `/colors`);
 
         onValue(dbRef, (response) => {
             const dbColors = [];
@@ -37,7 +37,7 @@ const Form = ({ setColors, resultRef }) => {
                 // inside the loop, we push each color name and colour value to the dbColors array:
                 dbColors.push({ name: data[key], key: key });
             }
-            // update the component's state using the local array dbColors
+            // update state using the local array dbColors so that colors state now holds whatever was in stored in firebase
             setColors(dbColors);
         });
     }, [])
@@ -46,7 +46,7 @@ const Form = ({ setColors, resultRef }) => {
         e.preventDefault()
 
         const database = getDatabase(firebase)
-        const dbRef = ref(database)
+        const dbRef = ref(database, `/colors`);
 
         // error handling if user doesn't add a capsule name, or selects white / black more than once
         let white = 0;
@@ -69,6 +69,7 @@ const Form = ({ setColors, resultRef }) => {
             toast('🚫 You have selected black as more than one of your capsule colours!')
         } else {
 
+            // push the user's colour capsule into firebase, and reset userInput state
             push(dbRef, userInput);
             setUserInput(initialValues);
             resultRef.current.previousSibling.scrollIntoView({block: "start", inline: "nearest", behavior: "smooth"});
