@@ -17,15 +17,11 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
         const handleWindowResize = () => {
             setWindowWidth(window.innerWidth);
         };
-
         window.addEventListener('resize', handleWindowResize);
-
         return () => {
             window.removeEventListener('resize', handleWindowResize);
         };
     });
-
-
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -113,28 +109,6 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
     const changeLinedWidth = (e) => {
         setLineWidth(e.target.value)
     }
-
-
-    // function resize() {
-    //     // Resize the window, not the pen
-    //     // Our canvas must cover full height of screen
-    //     // regardless of the resolution
-    //     var height = window.innerHeight;
-
-    //     // So we need to calculate the proper scaled width
-    //     // that should work well with every resolution
-    //     var ratio = canvasRef.current.width / canvasRef.current.height;
-    //     var width = height * ratio;
-
-    //     canvasRef.current.style.width = width + 'px';
-    //     canvasRef.current.style.height = height + 'px';
-    // }
-
-    // window.addEventListener('load', resize, false);
-    // window.addEventListener('resize', resize, false);
-
-
-
 
     return (
         <>

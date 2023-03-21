@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# Juno Project 3: Colour Capsule
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**View live site [here](https://colourcapsule.netlify.app/)**
 
-## Available Scripts
+## Overview
+Colour Capsule is a web application that allows users to create custom colour collections, or capsules, with up to five unique colours and a capsule name, and store them or delete them from the site. Users can create as many colour capsules as they like, and can select any of the colours available in the capsules to paint on a blank HTML Canvas element below the capsules. Users have the option to change the thickness and opacity of the paintbrush, and can erase, reset, and even download their drawing at any stage. 
 
-In the project directory, you can run:
+## Functionalities
+- CRUD (Create, Read, Update, Delete) functionalities for colour capsules
+- Display all created colour capsules in list form on the page, stored with Firebase
+- Ability to select any colour stored in a colour capsule to use on the HTML Canvas
+- Ability to change the opacity and thickness of the paint on canvas 
+- Ability to erase, reset, or download the drawing as a PNG image to the user's computer
+- Responsive down to 320px / mobile friendly design
 
-### `npm start`
+## Technologies Used
+- React (useState, useEffect, useRef, forwardRef, props, components)
+- HTML Canvas
+- Firebase Realtime Database
+- HTML
+- CSS
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Possible improvements
+- Storing user drawings in Firebase
+- Prevent the user from selecting the same colour more than once in the same capsule (currently there is error handling that prevents users from having more than one white or black colour in a capsule)
+- Undo button that undos the most recent drawn paint line
+- Display drawings on the page from multiple users once saved to Firebase
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Preview
+![Screenshot of the colour capsule app](./src/assets/screenshots/colour-capsules.png 'Colour Capsule')
+![Screenshot of the colour capsule app](./src/assets/screenshots/canvas.png 'Canvas')
+![Screenshot of the colour capsule app](./src/assets/screenshots/canvas-drawing.png 'Drawing on Canvas')
+![Screenshot of the colour capsule app](./src/assets/screenshots/erase-drawing.png 'Erase Drawing')
