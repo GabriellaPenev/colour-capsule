@@ -1,10 +1,8 @@
 import { useRef, useState, useEffect } from 'react';
 import { forwardRef } from "react";
-import Gallery from './Gallery';
 
-const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
+const Canvas = forwardRef(({ selectedColor, setSelectedColor, canvasRef }, ref) => {
 
-    const canvasRef = useRef(null);
     const ctxRef = useRef(null);
     const lineWidthRef = useRef(null)
     const opacityRef = useRef(null)
@@ -34,7 +32,7 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
         canvas.style.backgroundColor = 'white';
         canvas.style.border = 'solid 2px black';
 
-        const ctx = canvas.getContext('2d');
+        const ctx = canvasRef.current.getContext('2d');
         ctxRef.current = ctx;
         ctx.scale(2, 2);
         ctx.lineCap = 'round';
@@ -146,11 +144,9 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
                 <button onClick={reset}>Reset</button>
                 <button onClick={erase}>Erase</button>
                 <button>
-                    <a id='download-image-link' href="download-link" onClick={download}>Download drawing</a>
+                    <a id='download-image-link' href="download-link" onClick={download}>Download</a>
                 </button>
             </div>
-
-            <Gallery canvasRef={canvasRef} />
         </>
     )
 })

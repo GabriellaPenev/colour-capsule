@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { getDatabase, ref, push, onValue, remove } from 'firebase/database';
 import firebase from '../firebase';
 import React from 'react';
 
 
 const Gallery = ({ canvasRef }) => {
+
+    const testRef = useRef(null)
 
     const [imageURL, setImageURL] = useState('');
 
@@ -20,6 +22,7 @@ const Gallery = ({ canvasRef }) => {
         // Upload the dataURL to the database
         push(dbRef, dataURL)
 
+        testRef.current.scrollIntoView({behavior:"smooth", block: "end", inline:"nearest"});
 
     }
 
@@ -50,23 +53,26 @@ const Gallery = ({ canvasRef }) => {
 
     return (
         <div className="animate__animated animate__fadeIn">
-            <button onClick={addToGallery}>Upload</button>
+            <button onClick={addToGallery} className='submitButton'>Add to Gallery</button>
 
             <div>
-                <h3>Paint Gallery</h3>
-                {
-                    imageURL ?
-                        imageURL.map((image) => {
-                            return (
-                                <div className='image-container' key={image[0]}>
-                                    <img src={image[1]} alt="Canvas Image"  style={{backgroundColor: 'white'}}/>
-                                    <button className='deleteCanvas' onClick={() => { handleRemoveCanvas(image[0]) }}>Delete Drawing</button>
-                                </div>
-                            )
-                        })
-                        :
-                        <div><p>Click the 'upload' button to see your art displayed below!</p></div>
-                }
+                <h2>Gallery</h2>
+                <div className='galleryContainer'>
+                    {
+                        imageURL ?
+                            imageURL.map((image) => {
+                                return (
+                                    <div className='imageContainer' key={image[0]}>
+                                        <img src={image[1]} alt="Canvas Image" style={{ backgroundColor: 'white' }} />
+                                        <button className='deleteCanvas' onClick={() => { handleRemoveCanvas(image[0])}}>Delete Drawing</button>
+                                    </div>
+                                )
+                            })
+                            :
+                            <div><p>Click the 'upload' button to see your art displayed below!</p></div>
+                    }
+                </div>
+                <p className='bottom' ref={testRef}></p>
             </div>
         </div>
     )
