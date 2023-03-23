@@ -22,7 +22,7 @@ const Gallery = ({ canvasRef }) => {
         // Upload the dataURL to the database
         push(dbRef, dataURL)
 
-        testRef.current.scrollIntoView({behavior:"smooth", block: "end", inline:"nearest"});
+        testRef.current.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
 
     }
 
@@ -44,11 +44,15 @@ const Gallery = ({ canvasRef }) => {
     }, [])
 
     const handleRemoveCanvas = (imageID) => {
-        // dbRef points to the specific node of the capsule I want to remove
-        const database = getDatabase(firebase);
-        const dbRef = ref(database, `canvas/${imageID}`);
-        // remove the node specific to the capsule id
-        remove(dbRef)
+        if (confirm("are you sure you want to delete this from the gallery?") == true) {
+            // dbRef points to the specific node of the capsule I want to remove
+            const database = getDatabase(firebase);
+            const dbRef = ref(database, `canvas/${imageID}`);
+            // remove the node specific to the capsule id
+            remove(dbRef)
+        } else {
+            null
+        }
     }
 
     return (
@@ -64,12 +68,12 @@ const Gallery = ({ canvasRef }) => {
                                 return (
                                     <div className='imageContainer' key={image[0]}>
                                         <img src={image[1]} alt="Canvas Image" style={{ backgroundColor: 'white' }} />
-                                        <button className='deleteCanvas' onClick={() => { handleRemoveCanvas(image[0])}}>Delete Drawing</button>
+                                        <button className='deleteCanvas' onClick={() => { handleRemoveCanvas(image[0]) }}>Delete</button>
                                     </div>
                                 )
                             })
                             :
-                            <div><p>Click the 'upload' button to see your art displayed below!</p></div>
+                            <div><p>Click 'Add to Gallery' above to see your art displayed below!</p></div>
                     }
                 </div>
                 <p className='bottom' ref={testRef}></p>

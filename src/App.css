@@ -299,6 +299,13 @@ h1 {
   margin-top: 40px;
 }
 
+h2 {
+  font-size: clamp(2.5rem, 4vw, 3rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
 .title,
 a {
   animation: color-animation 7s linear infinite;
@@ -399,7 +406,7 @@ h3.intro {
 .introSpan {
   color: black;
   font-weight: 600;
-  font-size: clamp(0.8rem, 3vw, 1rem);
+  font-size: clamp(0.8rem, 3vw, 0.9rem);
 }
 
 form {
@@ -477,13 +484,14 @@ button {
   border: 1px solid transparent;
   box-shadow: 1em 1em 1em rgba(0, 0, 0, .1);
   background-color: white;
-  margin: 20px 0;
+  margin: 25px auto;
+  width: 70vw;
   border-radius: 15px;
   position: relative;
 }
 
 .resultsContainer p {
-  margin-bottom: 0;
+  margin: 15px 0 0;
   font-size: clamp(0.7rem, 2vw, 0.8rem);
 }
 
@@ -496,7 +504,7 @@ button {
 ul {
   list-style: none;
   padding-left: 0;
-  margin: 8px 0;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -686,7 +694,7 @@ li:hover {
 }
 
 .bottom {
-  margin-top: 350px;
+  margin-top: 360px;
 }
 
 .imageContainer {
@@ -701,18 +709,27 @@ li:hover {
 }
 
 .imageContainer img {
-  width: 100%;
+  max-width: 60vw;
+  max-height: 500px;
   border-radius: 15px;
-  border: 2px solid black;
+  border: 1.5px solid black;
 }
 
 .deleteCanvas {
-  width: 40%;
+  width: 25%;
+  padding: 5px 0;
   margin-top: 10px;
   font-size: 0.65rem;
-  border: 1px solid black;
+  font-weight: bold;
+  border: 1.5px solid black;
+  transition: 0.3s ease-in all;
 }
 
+.deleteCanvas:hover,
+.deleteCanvas:focus {
+  background-color: #000;
+  color: white;
+}
 
 footer {
   margin-top: 40px;
@@ -754,8 +771,17 @@ footer a {
     margin: 10px 0;
   }
 
+  .canvasContainer {
+    width: 90vw;
+  }
+
   .imageContainer {
     width: 75%;
+  }
+
+  .imageContainer img {
+    max-width: 90vw;
+    max-height: 80vh;
   }
 
   .bottom {
@@ -769,10 +795,9 @@ footer a {
   }
 
   .deleteCanvas {
-    width: 55%;
+    width: 30%;
     padding: 5px;
   }
-
 
 }
 
@@ -825,6 +850,10 @@ footer a {
     font-size: 0.9rem;
   }
 
+  .canvasContainer {
+    width: 70vw;
+  }
+
   .canvasActions button {
     width: 100%
   }
@@ -833,5 +862,7 @@ footer a {
     width: 100%;
   }
 
-
+  .imageContainer img {
+    max-height: 65vh;
+  }
 }
