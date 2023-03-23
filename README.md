@@ -25,7 +25,7 @@ Colour Capsule is a web application that allows users to create custom colour co
 ## Possible improvements
 - Prevent the user from selecting the same colour more than once in the same capsule (currently there is error handling that prevents users from having more than one white or black colour in a capsule)
 - Undo button that undos the most recent drawn paint line
-- Display drawings on the page from multiple users once saved to Firebase
+- Select one colour capsule at a time to appear alongside the Canvas for ease of painting with those selected colours
 
 ## Preview
 ![Screenshot of the colour capsule app](./src/assets/screenshots/colour-capsules.png 'Colour Capsule')
