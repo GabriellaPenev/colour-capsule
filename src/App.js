@@ -3,11 +3,13 @@ import Header from './Components/Header';
 import Form from './Components/Form';
 import Results from './Components/Results';
 import Canvas from './Components/Canvas';
+import Gallery from './Components/Gallery';
 import Footer from './Components/Footer';
 import './App.css';
 
 function App() {
 
+  const canvasRef = useRef(null);
   const resultRef = useRef(null);
 
   // state to bring data stored in firebase to the page: 
@@ -27,14 +29,20 @@ function App() {
         <Results
           colors={colors}
           setSelectedColor={setSelectedColor}
-          />
+        />
 
         <Canvas
           ref={resultRef}
           colors={colors}
           selectedColor={selectedColor}
           setSelectedColor={setSelectedColor}
+          canvasRef={canvasRef}
         />
+
+        <Gallery
+          canvasRef={canvasRef}
+        />
+
       </main>
 
       <Footer />

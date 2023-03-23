@@ -1,9 +1,8 @@
 import { useRef, useState, useEffect } from 'react';
 import { forwardRef } from "react";
 
-const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
-    
-    const canvasRef = useRef(null);
+const Canvas = forwardRef(({ selectedColor, setSelectedColor, canvasRef }, ref) => {
+
     const ctxRef = useRef(null);
     const lineWidthRef = useRef(null)
     const opacityRef = useRef(null)
@@ -14,6 +13,7 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
     const [opacity, setOpacity] = useState(1);
 
     useEffect(() => {
+        // listen for when the window width is resized, then run useEffect below that resets the canvas:
         const handleWindowResize = () => {
             setWindowWidth(window.innerWidth);
         };
@@ -29,10 +29,10 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
         canvas.style.height = "100%";
         canvas.width = canvas.offsetWidth * 2;
         canvas.height = canvas.offsetHeight * 2;
-        canvas.style.backgroundColor = '#ffffff'
-        canvas.style.border = 'solid 1px black'
+        canvas.style.backgroundColor = 'white';
+        canvas.style.border = 'solid 2px black';
 
-        const ctx = canvas.getContext('2d');
+        const ctx = canvasRef.current.getContext('2d');
         ctxRef.current = ctx;
         ctx.scale(2, 2);
         ctx.lineCap = 'round';
@@ -40,7 +40,6 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
         ctx.lineWidth = lineWidth;
         ctx.fillStyle = "white";
         ctx.fillRect(0, 0, 3000, 3000);
-
     }, [windowWidth]);
 
 
@@ -52,7 +51,6 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
         ctxRef.current.lineWidth = lineWidth;
         ctxRef.current.moveTo(offsetX, offsetY);
         ctxRef.current.stroke();
-
         setIsDrawing(true);
     }
 
@@ -73,32 +71,34 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
     }
 
     const reset = () => {
+        // reset states holding paintbrush color, line thickness and opacity, their input values
+        setSelectedColor('#000')
+        setLineWidth(60)
+        setOpacity(1)
+        lineWidthRef.current.value = 60;
+        opacityRef.current.value = 1;
 
-        ctxRef.current.clearRect(
+        ctxRef.current.globalAlpha = 1;
+        ctxRef.current.fillRect(
             0,
             0,
             canvasRef.current.width,
             canvasRef.current.height,
-            canvasRef.current.style.backgroundColor = '#ffffff',
-            setSelectedColor('#000'),
-            setLineWidth(60),
-            setOpacity(1)
+            canvasRef.current.style.backgroundColor = 'white'
         )
-
-        // reset the line thickness and opacity values:
-        lineWidthRef.current.value = 60
-        opacityRef.current.value = 1
     }
 
     const erase = () => {
+        setOpacity(1)
+        opacityRef.current.value = 1;
         ctxRef.current.strokeStyle = setSelectedColor('white');
         ctxRef.current.globalCompositionOperation = 'destination-out';
     }
 
     const download = (e) => {
         let link = e.currentTarget
-        link.setAttribute('download', 'drawing.png');
         let image = canvasRef.current.toDataURL('drawing/png');
+        link.setAttribute('download', 'drawing.png');
         link.setAttribute('href', image);
     }
 
@@ -109,6 +109,7 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
     const changeLinedWidth = (e) => {
         setLineWidth(e.target.value)
     }
+
 
     return (
         <div className='animate__animated animate__fadeIn'>
@@ -145,7 +146,7 @@ const Canvas = forwardRef(({ selectedColor, setSelectedColor }, ref) => {
                 <button onClick={reset}>Reset</button>
                 <button onClick={erase}>Erase</button>
                 <button>
-                    <a id='download-image-link' href="download-link" onClick={download}>Download drawing</a>
+                    <a id='download-image-link' href="download-link" onClick={download}>Download</a>
                 </button>
             </div>
 
