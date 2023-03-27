@@ -72,7 +72,7 @@ const Form = ({ setColors, resultRef }) => {
             // push the user's colour capsule into firebase, and reset userInput state
             push(dbRef, userInput);
             setUserInput(initialValues);
-            resultRef.current.previousSibling.scrollIntoView({block: "start", inline: "nearest", behavior: "smooth"});
+            resultRef.current.scrollIntoView({block: "start", inline: "nearest", behavior: "smooth"});
         }
     }
 

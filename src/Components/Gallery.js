@@ -52,6 +52,7 @@ const Gallery = ({ canvasRef }) => {
             remove(dbRef)
         } else {
             null
+            // ADD IN return null ?????
         }
     }
 
